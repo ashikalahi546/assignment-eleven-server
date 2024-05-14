@@ -59,6 +59,26 @@ app.post('/create',async(req,res)=>{
     res.send(result)
     })
 
+    //all update 
+    app.put('/create/:id',async(req,res)=>{
+      const id = req.params.id;
+      const filter = {_id: new ObjectId(id)}
+      const updateAll = req.body;
+      const update = {
+        $set:{
+        title:updateAll.title,
+        image:updateAll.image,
+        level:updateAll.level,
+        deadline:updateAll.deadline,
+        mark:updateAll.mark,
+        description:updateAll.description,
+        }
+      }
+
+      const result = await createAssignment.updateOne(filter,update)
+      res.send(result)
+    })
+
 
 
     console.log(
