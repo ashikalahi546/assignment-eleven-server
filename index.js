@@ -97,6 +97,17 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+// app.listen(port, () => {
+//   console.log(`Example app listening on port ${port}`);
+// });
+
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
+}).on('error', (err) => {
+  if (err.code === 'EADDRINUSE') {
+    console.error(`Port ${port} is already in use. Please use a different port.`);
+    process.exit(1);
+  } else {
+    throw err;
+  }
 });
